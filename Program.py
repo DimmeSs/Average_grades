@@ -34,8 +34,8 @@ while True:
         print(design())
         grade = input("\nPodaj ocenę : ")
         if next_grade.lower() == "end" or grade.lower() == "end": exit()
-        #Mess below but i have no idea what else do i have to do
-        elif grade == "" or grade != "1" or grade != "1+"or grade != "2-"or grade != "2"or grade != "2+"or grade != "3-"or grade != "3"or grade != "3+"or grade != "4-"or grade != "4"or grade != "4+"or grade != "5-"or grade != "5"or grade != "5+"or grade != "6-"or grade != "6"or grade != "6+":
+        #Nevermind , ogarnięty syf 
+        elif grade == "" or grade not in ["1", "1+", "2-", "2", "2+", "3-", "3", "3+", "4-", "4", "4+", "5-", "5", "5+", "6-", "6", "6+"]:
             print("Niepoprawna ocena (Jeżeli chcesz zakończyć program wpisz [end] )\n")
         else: break  
     while True:     
