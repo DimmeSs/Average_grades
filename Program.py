@@ -1,7 +1,10 @@
+def Delete_grade():
+    pass
 grades = []
 weights = []
-next_grade = input("#========================================#\n\nJeżeli Chcesz zakończyć -> Wpisz \"end\" \nJeżeli Chcesz korzystać wciśnij [Enter]\n")
-
+next_grade = input("#========================================#\n\nJeżeli Chcesz zakończyć -> Wpisz [end]\nJeżeli Chcesz usunąć ocene -> Wpisz [delete] \nJeżeli Chcesz korzystać z programu -> Wciśnij [Enter]\n")
+if next_grade.lower() == "end":
+    exit()
 while True:
     while True:
         grade = input("#========================================#\n\nPodaj ocenę : ")
@@ -39,4 +42,9 @@ while True:
             break
     except AttributeError:
         pass
+    if next_grade.lower() == "delete":
+        Delete_grade()
+
+
+    
 
