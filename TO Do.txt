@@ -1,0 +1,1 @@
+wyświetlanie średniej po usunięciu oceny -> stworzenie exe i nazwanie inaczej programu
