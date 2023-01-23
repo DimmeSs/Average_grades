@@ -1,21 +1,50 @@
-def Delete_grade():
-    pass
+import os
+
+# Windows romiar okna
+#os.system("mode con: cols=55 lines=20")
+def design():
+    a = "#" + "="*53 +"#"
+    return a
+#=====================================================#
 grades = []
 weights = []
-next_grade = input("#========================================#\n\nJeżeli Chcesz zakończyć -> Wpisz [end]\nJeżeli Chcesz usunąć ocene -> Wpisz [delete] \nJeżeli Chcesz korzystać z programu -> Wciśnij [Enter]\n")
+
+def Delete_grade():
+    print("\n#========================================#\nLista ocen:",grades)
+    while True:
+        nr = input("\nPodaj miejsce oceny, którą chcesz usunąć (np. 1 lub 2 itp..) : ")
+        if nr == "":
+            print("Nie podałeś miejsca. Wpisz ponownie")
+        else:
+            nr = int(nr)
+            nr-=1
+            grades.pop(nr)
+            weights.pop(nr)
+            print("Aktualna lista ocen:",grades,"\n")
+            break
+
+print(design())
+next_grade = input("\nJeżeli Chcesz zakończyć -> Wpisz [end]\nJeżeli Chcesz usunąć ocene -> Wpisz [delete] \nJeżeli Chcesz korzystać z programu -> Wciśnij [Enter]\n")
 if next_grade.lower() == "end":
     exit()
+elif next_grade.lower() == "delete":
+    print("\nNie ma sensu teraz usuwać jak nie masz żadnych ocen :3\nPrzypuszczam że chcesz na początku dodać oceny :p")
 while True:
     while True:
-        grade = input("#========================================#\n\nPodaj ocenę : ")
+        print(design())
+        grade = input("\nPodaj ocenę : ")
         if next_grade.lower() == "end" or grade.lower() == "end": exit()
-        elif grade == "": print("Nie podałeś oceny (Jeżeli chcesz zakończyć program wpisz \"end\"\n")
+        #Mess below but i have no idea what else do i have to do
+        elif grade == "" or grade != "1" or grade != "1+"or grade != "2-"or grade != "2"or grade != "2+"or grade != "3-"or grade != "3"or grade != "3+"or grade != "4-"or grade != "4"or grade != "4+"or grade != "5-"or grade != "5"or grade != "5+"or grade != "6-"or grade != "6"or grade != "6+":
+            print("Niepoprawna ocena (Jeżeli chcesz zakończyć program wpisz [end] )\n")
         else: break  
     while True:     
         weight = input("Podaj wagę oceny : ")
         try:
             if next_grade.lower() == "end" or grade.lower() == "end" or weight.lower() == "end":exit()
-            elif weight == "": print("Nie podałeś wagi oceny (Jeżeli chcesz zakończyć program wpisz \"end\"\n\n#========================================#")
+            elif weight == "": 
+                print("Nie podałeś wagi oceny (Jeżeli chcesz zakończyć program wpisz \"end\"\n")
+                print(design())
             else:break
         except AttributeError:
             break
