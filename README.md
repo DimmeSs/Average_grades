@@ -1,2 +1,3 @@
 # Average_grades
- program for calculating the average grade using the terminal (there are plans to make it a desktop application)
+ Program for calculating the average grade using the terminal -> file types : .py || .exe
+ (there are plans to make it a desktop application)
