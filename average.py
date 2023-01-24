@@ -1,6 +1,6 @@
 import os
 from termcolor import colored
-#Text Language -> Polish
+#Text Language -> English
 
 #Window size
 os.system("mode con: cols=55 lines=20")
@@ -14,42 +14,42 @@ weights = []#a list where the weights entered by the user are kept
 
 def Delete_grade():#definition that allows you to select a grades and remove it along with its weight
     print(design())
-    print("\nLista ocen:",grades)
+    print("\nGrades list:",grades)
     while True:
-        nr = input("\nPodaj miejsce oceny, którą chcesz usunąć \n(np. 1 lub 2 itp..) : ")
+        nr = input("\nEnter the location of the grade you want to remove \n(Example: 1 or 2 etc..) : ")
         if nr == "":
-            print(colored("Nie podałeś miejsca. Wpisz ponownie","red"))#colored makes text color => red
+            print(colored("[Error] You didn't specify a place.Please retype ","red"))#colored makes text color => red
         elif len(grades) < int(nr):
-            print(colored("Nie ma w tym miejscu oceny","red"))
+            print(colored("[Error] There is no grade here","red"))
         else:
             nr = int(nr)
             grades.pop(nr-1)#remove selected grade 
             weights.pop(nr-1)#remove selected weight
-            print("Aktualna lista ocen:",grades,"\n")
+            print("Current list of grades:",grades,"\n")
             break#go back to program
 
 print(design())
-next_grade = input("\nJeżeli Chcesz zakończyć -> Wpisz [end]\nJeżeli Chcesz usunąć ocene -> Wpisz [delete]\nJeżeli Chcesz korzystać z programu -> Wciśnij [Enter]\n")#info
+next_grade = input("\nIf You want to exit -> Type [end]\nIf You want to delete grades -> Type [delete]\nIf You want to use the program -> Press [Enter]\n")#info
 if next_grade.lower() == "end":
     exit()
 elif next_grade.lower() == "delete":
-    print(colored("\nNie ma sensu teraz usuwać nie mając żadnych ocen :3\nPrzypuszczam że chcesz na początku dodać oceny :p","red"))#"that'w what she said"
+    print(colored("[Error] No point in deleting now without any ratings :3\nI suppose you want to add grades first :p","red"))#"that'w what she said"
 while True:
 
     while True:
         print(design())
-        grade = input("\nPodaj ocenę : ")#retrieving a grade from the user
+        grade = input("\nGive grade: ")#retrieving a grade from the user
         if next_grade.lower() == "end" or grade.lower() == "end": exit()
         elif grade == "" or grade not in ["1", "1+", "2-", "2", "2+", "3-", "3", "3+", "4-", "4", "4+", "5-", "5", "5+", "6-", "6", "6+"]:#Grade can't be < 0.75 and have to be < 7 
-            print(colored("Niepoprawna ocena \n(Jeżeli chcesz zakończyć program wpisz [end] )\n","red"))
+            print(colored("[Error] Invalid grade \n(If you want to end the program type [end] )\n","red"))
         else: break  
 
     while True:     
-        weight = input("Podaj wagę oceny : ")#retrieving  grade weight from the user
+        weight = input("Enter grade weight : ")#retrieving  grade weight from the user
         try:
             if next_grade.lower() == "end" or grade.lower() == "end" or weight.lower() == "end":exit()
             elif weight == "": 
-                print(colored("Nie podałeś wagi oceny \n(Jeżeli chcesz zakończyć program wpisz \"end\"\n","red"))
+                print(colored("[Error] You did not provide the grade weight \n(If you want to exit -> Type [end]\n","red"))
                 print(design())
             else:break
         except AttributeError:
@@ -68,14 +68,14 @@ while True:
     weights.append(weight)#adding the received grade weight to the list
     average = sum([grades[i]*weights[i] for i in range(len(grades))])/sum(weights)#calculating the average of grades
 
-    print("\nTwoja średnia wynosi: [", round(average,2),"]\n")#rounding the average to 2 decimal places
-    print("|Ocena | Waga| ")
+    print("\nYour average is: [", round(average,2),"]\n")#rounding the average to 2 decimal places
+    print(colored("|Grades|Weight| ","light_blue"))
 
     for a,b in zip(grades,weights):
-        print("[",a,"wagi",int(b),"]")
+        print(colored("|"+str(a)+" ======= "+str(int(b))+"|","light_blue"))
         #This code is effectively printing out each element of the "grades" list, 
-        #along with its corresponding element in the "weight" list, with a format of [grade weight].
-    next_grade = input("")
+        #along with its corresponding element in the "weight" list, with a format of |grade ======= weight|.
+    next_grade = input("\nPress [Enter] to add new Grade\n")
     try:
         if next_grade.lower() == "end" or grade.lower() == "end" or weight.lower() == "end":
             break
