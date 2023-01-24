@@ -1,0 +1,3 @@
+cmd(ADM) -> pyinstaller.exe --onefile Program.py
+
+#ICON for later->  pyinstaller.exe --onefile --icon=app.ico Program.py
