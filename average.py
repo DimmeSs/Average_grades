@@ -27,6 +27,7 @@ def Delete_grade(): #definition that allows you to select a grades and remove it
             grades.pop(nr-1)#remove selected grade 
             weights.pop(nr-1)#remove selected weight
             for a,b in zip(grades,weights):
+                print(colored("\nGrades list:\n|Grades|Weight| ","light_blue"))
                 print(colored("|"+str(a)+" ======= "+str(int(b))+"|","light_blue"))
             try :
                 average = sum([grades[i]*weights[i] for i in range(len(grades))])/sum(weights) #calculating the average of grades
