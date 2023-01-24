@@ -3,7 +3,7 @@ from termcolor import colored
 #Text Language -> English
 
 #Window size
-#os.system("mode con: cols=55 lines=20")
+os.system("mode con: cols=55 lines=20")
 
 def design():  #definition that returns characters for cmd design
     a = "#" + "="*51 +"#"
