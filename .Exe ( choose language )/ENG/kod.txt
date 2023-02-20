@@ -1,0 +1,3 @@
+pyinstaller.exe --onefile --windowed --icon=app.ico app.py
+
+zrob .exe ENG ORAZ PL
