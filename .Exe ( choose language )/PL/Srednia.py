@@ -1,9 +1,7 @@
 import os
 from termcolor import colored
-#Język tekstu -> angielski
-
-#Rozmiar okna
-os.system("mode con: cols=55 lines=20")
+#Język tekstu -> polski [PL]
+os.system("mode con: cols=55 lines=20") #Rozmiar okna
 
 def design():  #definicja, która zwraca znaki dla wyglądu w cmd
     a = "#" + "="*51 +"#"
@@ -12,7 +10,7 @@ def design():  #definicja, która zwraca znaki dla wyglądu w cmd
 grades = [] #lista, na której przechowywane są oceny wprowadzone przez użytkownika
 weights = [] #lista, na której przechowywane są wagi wprowadzone przez użytkownika
 
-def Delete_grade(): #definicja, która pozwala wybrać ocene i usunąć je wraz z wagą
+def Delete_grade(): #definicja, która pozwala wybrać ocene i usunąć je wraz z przypisaną do niej wagą
     print(design())
     print("\nLista ocen:",grades)
     while True:
@@ -46,7 +44,7 @@ while True:
 
     while True:
         print(design())
-        grade = input("\nPodaj ocenę: ") #pobieranie oceny od użytkownika
+        grade = input("\nPodaj ocenę: ") #Pobieranie oceny od użytkownika
         if next_grade.lower() == "end" or grade.lower() == "end": exit()
         elif grade == "" or grade not in ["1", "1+", "2-", "2", "2+", "3-", "3", "3+", "4-", "4", "4+", "5-", "5", "5+", "6-", "6", "6+"]:
             #Ocena nie może być mniejsza od 0.75 i musi być większa/równa 1 ale mniejsza niż 8 
@@ -58,15 +56,22 @@ while True:
         try:
             if next_grade.lower() == "end" or grade.lower() == "end" or weight.lower() == "end":exit()
             elif weight == "": 
-                print(colored("[Error] Nie podałeś wagi oceny \n(Jeśli chcesz wyjść -> Wpisz [end]\n","red"))
+                print(colored("[Error] Nie podałeś wagi oceny \n( Jeśli chcesz wyjść -> Wpisz [end] )\n","red"))
                 print(design())
             elif weight == "delete":
                 print(colored("\n[Error] Nie ma sensu usuwać teraz bez żadnych ocen :3\nChyba najpierw chcesz dodać ocene :p","red"))
-            else:break
+            else:
+                weight = float(weight)
+                break
         except AttributeError:
             break
+        except ValueError:
+            print(colored("[Error] Niepoprawna waga oceny \n( Jeśli chcesz wyjść -> Wpisz [end] )\n","red"))
+            print(design())
 
-    weight = float(weight)
+        
+
+    
     if '+' in grade: #konwertowanie [oceny+] na zmiennoprzecinkowe i obliczanie (na przykład 4+ na zmiennoprzecinkowe 4+0,50)
         grade = float(grade.replace('+','')) + 0.5
     elif '-' in grade: #konwertowanie [stopień-] na zmiennoprzecinkowe i obliczanie (na przykład 4- na zmiennoprzecinkowe 4-0,25)
