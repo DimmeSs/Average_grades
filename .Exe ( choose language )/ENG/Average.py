@@ -16,25 +16,28 @@ def Delete_grade(): #definition that allows you to select a grades and remove it
     print(design())
     print("\nGrades list:",grades)
     while True:
-        nr = input("\nEnter the location of the grade you want to remove \n(Example: 1 or 2 etc..) : ")
-        if nr == "":
-            print(colored("[Error] You didn't specify a place.Please retype ","red")) #colored makes text color => red
-        elif len(grades) < int(nr):
-            print(colored("[Error] There is no grade here","red"))
-        else:
-            nr = int(nr)
-            print("The chosen Grade : [",grades[nr-1],"with weight",weights[nr-1],"]")
-            grades.pop(nr-1)#remove selected grade 
-            weights.pop(nr-1)#remove selected weight
-            for a,b in zip(grades,weights):
-                print(colored("\nGrades list:\n|Grades|Weight| ","light_blue"))
-                print(colored("|"+str(a)+" ======= "+str(int(b))+"|","light_blue"))
-            try :
-                average = sum([grades[i]*weights[i] for i in range(len(grades))])/sum(weights) #calculating the average of grades
-                print("\nYour average is: [", round(average,2),"]\n") #rounding the average to 2 decimal places
-            except ZeroDivisionError:
-                print(colored("You have removed the grade, so you can't calculate the average\n","red"))
-            break #go back to program
+        try:
+            nr = input("\nEnter the location of the grade you want to remove \n(Example: 1 or 2 etc..) : ")
+            if nr == "":
+                print(colored("[Error] You didn't specify a place.Please retype ","red")) #colored makes text color => red
+            elif len(grades) < int(nr):
+                print(colored("[Error] There is no grade here","red"))
+            else:
+                nr = int(nr)
+                print("The chosen Grade : [",grades[nr-1],"with weight",weights[nr-1],"]")
+                grades.pop(nr-1)#remove selected grade 
+                weights.pop(nr-1)#remove selected weight
+                for a,b in zip(grades,weights):
+                    print(colored("\nGrades list:\n|Grades|Weight| ","light_blue"))
+                    print(colored("|"+str(a)+" ======= "+str(int(b))+"|","light_blue"))
+                try :
+                    average = sum([grades[i]*weights[i] for i in range(len(grades))])/sum(weights) #calculating the average of grades
+                    print("\nYour average is: [", round(average,2),"]\n") #rounding the average to 2 decimal places
+                except ZeroDivisionError:
+                    print(colored("You have removed the grade, so you can't calculate the average\n","red"))
+                break #go back to program
+        except ValueError:
+            print(colored("[Error] Invalid location. Please Try Again ","red"))
 
 print(design())
 next_grade = input("\nIf You want to exit -> Type [end]\nIf You want to delete grades -> Type [delete]\nIf You want to use the program -> Press [Enter]\n")#info

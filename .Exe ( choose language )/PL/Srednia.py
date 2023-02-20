@@ -14,25 +14,28 @@ def Delete_grade(): #definicja, która pozwala wybrać ocene i usunąć je wraz 
     print(design())
     print("\nLista ocen:",grades)
     while True:
-        nr = input("\nWprowadź lokalizację oceny, którą chcesz usunąć \n(Przykład: 1 lub 2 itd.) : ")
-        if nr == "":
-            print(colored("[Error] Nie określono miejsca. Wpisz ponownie ","red")) #colored powoduje, że kolor tekstu => czerwony
-        elif len(grades) < int(nr):
-            print(colored("[Error] Nie ma takiej oceny","red"))
-        else:
-            nr = int(nr)
-            print("Wybrana ocena: [",grades[nr-1],"wagi",weights[nr-1],"]")
-            grades.pop(nr-1) #usuń wybraną ocenę 
-            weights.pop(nr-1) #usuń wybraną wagę
-            for a,b in zip(grades,weights):
-                print(colored("\nLista ocen:\n|Ocena | Waga | ","light_blue"))
-                print(colored("|"+str(a)+" ======= "+str(int(b))+"|","light_blue"))
-            try :
-                average = sum([grades[i]*weights[i] for i in range(len(grades))])/sum(weights) #calculating the average of grades
-                print("\nTwoja średnia wynosi: [", round(average,2),"]\n") #rounding the average to 2 decimal places
-            except ZeroDivisionError:
-                print(colored("Usunięto ocenę, więc nie można obliczyć średniej\n","red"))
-            break #go back to program
+        try:
+            nr = input("\nWprowadź lokalizację oceny, którą chcesz usunąć \n(Przykład: 1 lub 2 itd.) : ")
+            if nr == "":
+                print(colored("[Error] Nie określono miejsca. Wpisz ponownie ","red")) #colored powoduje, że kolor tekstu => czerwony
+            elif len(grades) < int(nr):
+                print(colored("[Error] Nie ma takiej oceny","red"))
+            else:
+                nr = int(nr)
+                print("Wybrana ocena: [",grades[nr-1],"wagi",weights[nr-1],"]")
+                grades.pop(nr-1) #usuń wybraną ocenę 
+                weights.pop(nr-1) #usuń wybraną wagę
+                for a,b in zip(grades,weights):
+                    print(colored("\nLista ocen:\n|Ocena | Waga | ","light_blue"))
+                    print(colored("|"+str(a)+" ======= "+str(int(b))+"|","light_blue"))
+                try :
+                    average = sum([grades[i]*weights[i] for i in range(len(grades))])/sum(weights) #calculating the average of grades
+                    print("\nTwoja średnia wynosi: [", round(average,2),"]\n") #rounding the average to 2 decimal places
+                except ZeroDivisionError:
+                    print(colored("Usunięto ocenę, więc nie można obliczyć średniej\n","red"))
+                break #go back to program
+        except ValueError:
+            print(colored("[Error] Niepoprawna lokalizacja oceny. Spróbuj ponownie ","red"))
 
 print(design())
 next_grade = input("\nJeśli chcesz wyjść -> Wpisz [end]\nJeśli chcesz usunąć oceny -> Wpisz [delete]\nJeśli chcesz skorzystać z programu -> Naciśnij [Enter]\n")#info
