@@ -1,0 +1,4 @@
+[.Py] --> [.exe] 
+
+cmd(as admin) :
+	pyinstaller --onefile --icon=app.ico Average.py
